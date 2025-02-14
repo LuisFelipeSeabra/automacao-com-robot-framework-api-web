@@ -13,7 +13,7 @@
 
 ## Decrição do Projeto de Automação 
 O projeto possui testes de API e de WEB. 
-Para os testes de WEB, estou utilizando a faker library para geração de e-mail, nome e senha de forma dinâmica, ou seja, a cada execução um novo cliente é gerado. Foi preciso fazer isso porque o sistema servRest é aberto.
+Para os testes de clientes(WEB e API), utilizou-se a faker library para geração de e-mail, nome e senha (de forma dinâmica), ou seja, a cada execução um novo cliente é gerado. Foi preciso fazer isso porque o sistema servRest é aberto.
 
 * Geração de paylod
 A geração de payload foi feita via python "API\resources\data\createPayloads.py".
@@ -39,6 +39,25 @@ Para automação utilizou-se: o formato Gherkin para a criação dos cenários e
   * robotframework-pabot==2.18.0
 
 ```
+
+#### Cenários de Testes
+
+WEB:
+```
+Cenário: Login com sucesso
+Cenário: Logout com sucesso
+Cenário: Login com senha errada
+Cenário: listar usuários
+```
+
+API:
+```
+Cenário: cadastrar usuário com sucesso
+Cenário: Login com usuario inválido
+Cenário: Login com sucesso
+```
+
+
 
 #### Execução dos Testes
 Executar [requirements](https://github.com/LuisFelipeSeabra/automacao-com-robot-framework-api-web/tree/master/requirements.txt) pela linha de comando:
