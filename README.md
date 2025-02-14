@@ -57,12 +57,11 @@ robot WEB/tests/*/*
 Testes sequênciais(API):
 robot WEB/tests/*/*
 ```
-Ao final da execução será gerado um [relatório com as execuções e screenshots das telas](https://github.com/LuisFelipeSeabra/automacao-com-robot-framework-api-web/tree/master/log.html)!
-
+Ao final da execução será gerado um relatório com as execuções e screenshots das telas.
 
 #### Relatório de execução
 
 1. [Relatório](https://github.com/LuisFelipeSeabra/automacao-com-robot-framework-api-web/tree/master/log.html)
 
-![image](https://user-images.githubusercontent.com/49051123/121533852-0db43e80-c9d7-11eb-9c5a-9a697d5cefdc.png)
+![image](https://github.com/LuisFelipeSeabra/automacao-com-robot-framework-api-web/blob/master/passed.png)
 
