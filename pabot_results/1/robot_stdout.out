@@ -1,0 +1,18 @@
+==============================================================================
+Suites                                                                        
+==============================================================================
+Suites.loginTest :: Testes de login e logout                                  
+==============================================================================
+Cenário 01: Login com sucesso                                         | PASS |
+------------------------------------------------------------------------------
+Cenário 02: Logout com sucesso                                        | PASS |
+------------------------------------------------------------------------------
+Cenário 03: Login com senha errada                                    | PASS |
+------------------------------------------------------------------------------
+Suites.loginTest :: Testes de login e logout                          | PASS |
+3 tests, 3 passed, 0 failed
+==============================================================================
+Suites                                                                | PASS |
+3 tests, 3 passed, 0 failed
+==============================================================================
+Output:  C:\Users\55619\Dropbox\My PC (DESKTOP-8Q92QEK)\Documents\projetos\servRest\automacao-com-robot-framework-api-web\pabot_results\1\output.xml
