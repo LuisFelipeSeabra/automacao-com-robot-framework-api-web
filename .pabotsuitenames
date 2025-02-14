@@ -1,0 +1,8 @@
+datasources:8cf57a0005334638a70d5cf62d0ad9018e506486
+commandlineoptions:9f8598a690c7367accf83ead504756ddd374acc9
+suitesfrom:no-suites-from-option
+file:f28f3da8825c23ada7a25f41a174597155f53e82
+--suite Suites.listarUsuariosTest
+--suite Suites.loginTest
+--suite Suites.loginApiTest
+--suite Suites.usuariosApiTest

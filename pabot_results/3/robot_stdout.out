@@ -1,0 +1,14 @@
+==============================================================================
+Suites                                                                        
+==============================================================================
+Suites.usuariosApiTest :: Testes de Listar usuários                           
+==============================================================================
+Cenário 01: cadastrar usuário com sucesso                             | PASS |
+------------------------------------------------------------------------------
+Suites.usuariosApiTest :: Testes de Listar usuários                   | PASS |
+1 test, 1 passed, 0 failed
+==============================================================================
+Suites                                                                | PASS |
+1 test, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\55619\Dropbox\My PC (DESKTOP-8Q92QEK)\Documents\projetos\servRest\automacao-com-robot-framework-api-web\pabot_results\3\output.xml

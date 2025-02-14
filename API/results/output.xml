@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.8.8rc1 on win32)" generated="20230919 15:11:31.566" rpa="false" schemaversion="3">
+<suite id="s1" name="Test" source="C:\robotframework\projeto_github\robotFramework\WEB\tests\func1\test.robot">
+<kw name="Abrir Sessao" library="base" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>executable_path=${CHROMEDRIVER_PATH}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230919 15:11:31.836" level="INFO">Opening browser 'chrome' to base url 'https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:P%C3%A1gina_principal'.</msg>
+<status status="PASS" starttime="20230919 15:11:31.836" endtime="20230919 15:11:36.049"/>
+</kw>
+<status status="PASS" starttime="20230919 15:11:31.836" endtime="20230919 15:11:36.049"/>
+</kw>
+<test id="s1-t1" name="Cenário 01: Teste 1" line="13">
+<kw name="Log" library="BuiltIn">
+<arg>${ENV}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230919 15:11:36.053" level="INFO">dev</msg>
+<status status="PASS" starttime="20230919 15:11:36.052" endtime="20230919 15:11:36.053"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${BASE_URL}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230919 15:11:36.054" level="INFO">https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:P%C3%A1gina_principal</msg>
+<status status="PASS" starttime="20230919 15:11:36.054" endtime="20230919 15:11:36.054"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${BROWSER}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230919 15:11:36.055" level="INFO">chrome</msg>
+<status status="PASS" starttime="20230919 15:11:36.055" endtime="20230919 15:11:36.055"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${NOME}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230919 15:11:36.056" level="INFO">dev_NOME</msg>
+<status status="PASS" starttime="20230919 15:11:36.056" endtime="20230919 15:11:36.057"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${SENHA}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230919 15:11:36.058" level="INFO">dev_SENHA</msg>
+<status status="PASS" starttime="20230919 15:11:36.057" endtime="20230919 15:11:36.058"/>
+</kw>
+<status status="PASS" starttime="20230919 15:11:36.050" endtime="20230919 15:11:36.058"/>
+</test>
+<test id="s1-t2" name="Cenário 02: Teste 2" line="20">
+<kw name="pesquisar por" library="steps_func1">
+<arg>${${ENV}_env}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${pesquisa}</arg>
+<arg>${txt}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230919 15:11:36.066" level="INFO">Typing text 'dev_env' into text field '//input[@name="search"]'.</msg>
+<status status="PASS" starttime="20230919 15:11:36.065" endtime="20230919 15:11:36.187"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230919 15:11:41.197" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20230919 15:11:36.187" endtime="20230919 15:11:41.197"/>
+</kw>
+<status status="PASS" starttime="20230919 15:11:36.063" endtime="20230919 15:11:41.197"/>
+</kw>
+<status status="PASS" starttime="20230919 15:11:36.061" endtime="20230919 15:11:41.199"/>
+</test>
+<test id="s1-t3" name="Cenário 03: Teste 3" line="23">
+<kw name="Reload Page" library="SeleniumLibrary" type="SETUP">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230919 15:11:41.201" endtime="20230919 15:11:43.163"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230919 15:11:44.173" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20230919 15:11:43.164" endtime="20230919 15:11:44.173"/>
+</kw>
+<kw name="pesquisar por" library="steps_func1">
+<arg>${NOME}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${pesquisa}</arg>
+<arg>${txt}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230919 15:11:44.177" level="INFO">Typing text 'dev_NOME' into text field '//input[@name="search"]'.</msg>
+<status status="PASS" starttime="20230919 15:11:44.176" endtime="20230919 15:11:44.278"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230919 15:11:49.282" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20230919 15:11:44.278" endtime="20230919 15:11:49.282"/>
+</kw>
+<status status="PASS" starttime="20230919 15:11:44.175" endtime="20230919 15:11:49.283"/>
+</kw>
+<status status="PASS" starttime="20230919 15:11:41.200" endtime="20230919 15:11:49.284"/>
+</test>
+<kw name="Fechar Sessao" library="base" type="TEARDOWN">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230919 15:11:49.289" endtime="20230919 15:11:51.474"/>
+</kw>
+<status status="PASS" starttime="20230919 15:11:49.289" endtime="20230919 15:11:51.474"/>
+</kw>
+<doc>robot -v ENV:test -v BROWSER:chrome WEB/tests/func1/test.robot</doc>
+<status status="PASS" starttime="20230919 15:11:31.568" endtime="20230919 15:11:51.474"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Test">Test</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20230919 15:11:31.805" level="WARN">Imported resource file 'C:\robotframework\projeto_github\robotFramework\WEB\resources\common\commons_web.resource' is empty.</msg>
+<msg timestamp="20230919 15:11:31.823" level="WARN">Imported resource file 'C:\robotframework\projeto_github\robotFramework\WEB\resources\feature\func1\keywords_func1.resource' is empty.</msg>
+<msg timestamp="20230919 15:11:31.831" level="WARN">Imported resource file 'C:\robotframework\projeto_github\robotFramework\WEB\resources\feature\func2\keywords_func2.resource' is empty.</msg>
+</errors>
+</robot>

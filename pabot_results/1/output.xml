@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.8.8rc1 on win32)" generated="20250214 15:24:05.620" rpa="false" schemaversion="3">
+<suite id="s1" name="Suites">
+<suite id="s1-s1" name="loginTest" source="C:\Users\55619\Dropbox\My PC (DESKTOP-8Q92QEK)\Documents\projetos\servRest\automacao-com-robot-framework-api-web\WEB\tests\login\loginTest.robot">
+<test id="s1-s1-t1" name="Cenário 01: Login com sucesso" line="9">
+<kw name="gerar usuário para testes de login e abrir sessao" library="loginSteps" type="SETUP">
+<kw name="gerar usuário para testes de login" library="commons_api">
+<kw name="First Name" library="FakerLibrary">
+<var>${nome_login}</var>
+<msg timestamp="20250214 15:24:07.186" level="INFO">${nome_login} = John</msg>
+<status status="PASS" starttime="20250214 15:24:07.185" endtime="20250214 15:24:07.186"/>
+</kw>
+<kw name="Email" library="FakerLibrary">
+<var>${email_login}</var>
+<msg timestamp="20250214 15:24:07.186" level="INFO">${email_login} = reyesmatthew@example.com</msg>
+<status status="PASS" starttime="20250214 15:24:07.186" endtime="20250214 15:24:07.186"/>
+</kw>
+<kw name="Password" library="FakerLibrary">
+<var>${senha_login}</var>
+<arg>special_chars=FALSE</arg>
+<doc>Generate a random password of the specified ``length``.</doc>
+<msg timestamp="20250214 15:24:07.187" level="INFO">${senha_login} = DLEPcBhn5u</msg>
+<status status="PASS" starttime="20250214 15:24:07.186" endtime="20250214 15:24:07.187"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250214 15:24:07.692" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20250214 15:24:07.187" endtime="20250214 15:24:07.692"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${email_login}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:07.694" level="INFO">${email_login} = reyesmatthew@example.com</msg>
+<status status="PASS" starttime="20250214 15:24:07.693" endtime="20250214 15:24:07.694"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${senha_login}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:07.696" level="INFO">${senha_login} = DLEPcBhn5u</msg>
+<status status="PASS" starttime="20250214 15:24:07.695" endtime="20250214 15:24:07.696"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${nome_login}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:07.697" level="INFO">${nome_login} = John</msg>
+<status status="PASS" starttime="20250214 15:24:07.696" endtime="20250214 15:24:07.697"/>
+</kw>
+<kw name="criar usuário" library="usuariosApiKeywords">
+<arg>${nome_login}</arg>
+<arg>${email_login}</arg>
+<arg>${senha_login}</arg>
+<arg>true</arg>
+<kw name="Gerar payload para cadastro de cliente" library="usuariosApiKeywords">
+<arg>${nome}</arg>
+<arg>${email}</arg>
+<arg>${senha}</arg>
+<arg>${adm}</arg>
+<kw name="Criar Payload Para Cadastro De Cliente" library="createPayloads">
+<var>${body}</var>
+<arg>${NOME}</arg>
+<arg>${EMAIL}</arg>
+<arg>${SENHA}</arg>
+<arg>${ADM}</arg>
+<msg timestamp="20250214 15:24:07.700" level="INFO">${body} = {
+    "nome": "John",
+    "email": "reyesmatthew@example.com",
+    "password": "DLEPcBhn5u",
+    "administrador": "true"
+}</msg>
+<status status="PASS" starttime="20250214 15:24:07.699" endtime="20250214 15:24:07.700"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:07.701" level="INFO">${body} = {
+    "nome": "John",
+    "email": "reyesmatthew@example.com",
+    "password": "DLEPcBhn5u",
+    "administrador": "true"
+}</msg>
+<status status="PASS" starttime="20250214 15:24:07.700" endtime="20250214 15:24:07.701"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:07.698" endtime="20250214 15:24:07.701"/>
+</kw>
+<kw name="POST request test" library="commons_api">
+<arg>/usuarios</arg>
+<arg>${body}</arg>
+<arg>201</arg>
+<kw name="criar sessao" library="commons_api">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>api</arg>
+<arg>${BASE_URL_API}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20250214 15:24:07.704" level="INFO">Creating Session using : alias=api, url=https://serverest.dev, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20250214 15:24:07.703" endtime="20250214 15:24:07.704"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:07.702" endtime="20250214 15:24:07.704"/>
+</kw>
+<kw name="Convert To Json" library="JsonValidator">
+<var>${body}</var>
+<arg>${body}</arg>
+<doc>Convert a python object to JsonType.</doc>
+<msg timestamp="20250214 15:24:07.705" level="INFO">${body} = {'nome': 'John', 'email': 'reyesmatthew@example.com', 'password': 'DLEPcBhn5u', 'administrador': 'true'}</msg>
+<status status="PASS" starttime="20250214 15:24:07.705" endtime="20250214 15:24:07.705"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20250214 15:24:07.706" level="INFO">&amp;{headers} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20250214 15:24:07.705" endtime="20250214 15:24:07.706"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>api</arg>
+<arg>url=${url}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=${status}</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20250214 15:24:08.081" level="INFO">POST Request : url=https://serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '104'} 
+ body=b'{"nome": "John", "email": "reyesmatthew@example.com", "password": "DLEPcBhn5u", "administrador": "true"}' 
+ </msg>
+<msg timestamp="20250214 15:24:08.081" level="INFO">POST Response : url=https://serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': 'e2872189d1726387668e3e2c843894d4', 'Date': 'Fri, 14 Feb 2025 18:24:07 GMT', 'Server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "Ij32Jw3WpltffAid"
+} 
+ </msg>
+<msg timestamp="20250214 15:24:08.081" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20250214 15:24:07.706" endtime="20250214 15:24:08.082"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${resposta}</var>
+<arg>${response.content}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250214 15:24:08.084" level="INFO">${resposta} = {
+    "message": "Cadastro realizado com sucesso",
+    "_id": "Ij32Jw3WpltffAid"
+}</msg>
+<status status="PASS" starttime="20250214 15:24:08.082" endtime="20250214 15:24:08.084"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${resposta_status}</var>
+<arg>${response.status_code}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250214 15:24:08.086" level="INFO">${resposta_status} = 201</msg>
+<status status="PASS" starttime="20250214 15:24:08.084" endtime="20250214 15:24:08.086"/>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<var>${resposta}</var>
+<arg>${resposta}</arg>
+<doc>*DEPRECATED* Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</doc>
+<msg timestamp="20250214 15:24:08.087" level="WARN">Keyword 'RequestsLibrary.To Json' is deprecated. Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</msg>
+<msg timestamp="20250214 15:24:08.087" level="INFO">To JSON using : content={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "Ij32Jw3WpltffAid"
+} </msg>
+<msg timestamp="20250214 15:24:08.087" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20250214 15:24:08.087" level="INFO">${resposta} = {'message': 'Cadastro realizado com sucesso', '_id': 'Ij32Jw3WpltffAid'}</msg>
+<status status="PASS" starttime="20250214 15:24:08.086" endtime="20250214 15:24:08.087"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${resposta}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:08.089" level="INFO">${resposta} = {'message': 'Cadastro realizado com sucesso', '_id': 'Ij32Jw3WpltffAid'}</msg>
+<status status="PASS" starttime="20250214 15:24:08.088" endtime="20250214 15:24:08.089"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${resposta_status}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:08.090" level="INFO">${resposta_status} = 201</msg>
+<status status="PASS" starttime="20250214 15:24:08.089" endtime="20250214 15:24:08.090"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:07.702" endtime="20250214 15:24:08.090"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:07.697" endtime="20250214 15:24:08.090"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:07.185" endtime="20250214 15:24:08.090"/>
+</kw>
+<kw name="Abrir Sessao" library="commons_web">
+<kw name="Baixar Chromedriver Path" library="webdriverManager">
+<var>${CHROMEDRIVER_PATH}</var>
+<msg timestamp="20250214 15:24:08.092" level="INFO">====== WebDriver manager ======</msg>
+<msg timestamp="20250214 15:24:09.731" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg timestamp="20250214 15:24:09.814" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg timestamp="20250214 15:24:09.901" level="INFO">Driver [C:\Users\55619\.wdm\drivers\chromedriver\win64\133.0.6943.98\chromedriver.exe] found in cache</msg>
+<msg timestamp="20250214 15:24:09.901" level="INFO">C:\Users\55619\.wdm\drivers\chromedriver\win64\133.0.6943.98\chromedriver.exe</msg>
+<msg timestamp="20250214 15:24:09.902" level="INFO">${CHROMEDRIVER_PATH} = C:\Users\55619\.wdm\drivers\chromedriver\win64\133.0.6943.98\chromedriver.exe</msg>
+<status status="PASS" starttime="20250214 15:24:08.092" endtime="20250214 15:24:09.902"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>executable_path=${CHROMEDRIVER_PATH}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20250214 15:24:09.903" level="INFO">Opening browser 'Chrome' to base url 'https://front.serverest.dev/login'.</msg>
+<status status="PASS" starttime="20250214 15:24:09.902" endtime="20250214 15:24:13.301"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:08.091" endtime="20250214 15:24:13.301"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:07.184" endtime="20250214 15:24:13.302"/>
+</kw>
+<kw name="Dado que eu tenha acessado o sistema serverest" library="loginSteps">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${BOTAO_ENTRAR}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:13.304" endtime="20250214 15:24:13.330"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250214 15:24:14.217" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250214 15:24:13.331" endtime="20250214 15:24:14.218"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:13.302" endtime="20250214 15:24:14.218"/>
+</kw>
+<kw name="Quando preencher usuário &quot;${email_login}&quot; e Senha &quot;${senha_login}&quot;" library="loginSteps" sourcename="Quando preencher usuário &quot;${NOME_LOGIN}&quot; e Senha &quot;${SENHA_LOGIN}&quot;">
+<kw name="aguardar elemento estar visivel na tela e preencher" library="loginKeywords">
+<arg>${Input_Email_Login}</arg>
+<arg>${NOME_LOGIN}</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:14.221" endtime="20250214 15:24:14.240"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<arg>${elemento_a_ser_preenchido}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250214 15:24:14.242" level="INFO">Typing text 'reyesmatthew@example.com' into text field 'id=email'.</msg>
+<status status="PASS" starttime="20250214 15:24:14.241" endtime="20250214 15:24:14.466"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:14.219" endtime="20250214 15:24:14.466"/>
+</kw>
+<kw name="aguardar elemento estar visivel na tela e preencher" library="loginKeywords">
+<arg>${Input_Senha_Login}</arg>
+<arg>${SENHA_LOGIN}</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:14.469" endtime="20250214 15:24:14.486"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<arg>${elemento_a_ser_preenchido}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250214 15:24:14.487" level="INFO">Typing text 'DLEPcBhn5u' into text field 'id=password'.</msg>
+<status status="PASS" starttime="20250214 15:24:14.486" endtime="20250214 15:24:14.638"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:14.467" endtime="20250214 15:24:14.638"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:14.219" endtime="20250214 15:24:14.639"/>
+</kw>
+<kw name="E clicar em &quot;Entrar&quot;" library="commons_web" sourcename="${word} clicar em &quot;${btn}&quot;">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Botao_${btn}}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250214 15:24:14.641" level="INFO">Clicking element '//button[@type="submit"]'.</msg>
+<status status="PASS" starttime="20250214 15:24:14.640" endtime="20250214 15:24:14.753"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:14.640" endtime="20250214 15:24:14.753"/>
+</kw>
+<kw name="Então sistema efetuará o &quot;login&quot; com sucesso ao mostrar o texto &quot;${Texto_bem_vindo}&quot;" library="loginSteps" sourcename="Então sistema efetuará o &quot;${login}&quot; com sucesso ao mostrar o texto &quot;${Texto}&quot;">
+<kw name="aguardar texto: &quot;${Texto}&quot; estar visivel e printar a tela" library="commons_web" sourcename="aguardar texto: &quot;${Texto}&quot; estar visivel e printar a tela">
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<arg>${Texto}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:14.755" endtime="20250214 15:24:15.873"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250214 15:24:15.992" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250214 15:24:15.874" endtime="20250214 15:24:15.992"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:14.755" endtime="20250214 15:24:15.992"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:14.754" endtime="20250214 15:24:15.993"/>
+</kw>
+<kw name="Fechar Sessao" library="commons_web" type="TEARDOWN">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20250214 15:24:15.995" endtime="20250214 15:24:18.223"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:15.993" endtime="20250214 15:24:18.224"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:07.183" endtime="20250214 15:24:18.224"/>
+</test>
+<test id="s1-s1-t2" name="Cenário 02: Logout com sucesso" line="16">
+<kw name="gerar usuário para testes de login e abrir sessao" library="loginSteps" type="SETUP">
+<kw name="gerar usuário para testes de login" library="commons_api">
+<kw name="First Name" library="FakerLibrary">
+<var>${nome_login}</var>
+<msg timestamp="20250214 15:24:18.232" level="INFO">${nome_login} = Daniel</msg>
+<status status="PASS" starttime="20250214 15:24:18.231" endtime="20250214 15:24:18.232"/>
+</kw>
+<kw name="Email" library="FakerLibrary">
+<var>${email_login}</var>
+<msg timestamp="20250214 15:24:18.233" level="INFO">${email_login} = jameshuff@example.com</msg>
+<status status="PASS" starttime="20250214 15:24:18.232" endtime="20250214 15:24:18.233"/>
+</kw>
+<kw name="Password" library="FakerLibrary">
+<var>${senha_login}</var>
+<arg>special_chars=FALSE</arg>
+<doc>Generate a random password of the specified ``length``.</doc>
+<msg timestamp="20250214 15:24:18.234" level="INFO">${senha_login} = Mg9MHhWDOX</msg>
+<status status="PASS" starttime="20250214 15:24:18.234" endtime="20250214 15:24:18.234"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250214 15:24:18.750" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20250214 15:24:18.234" endtime="20250214 15:24:18.750"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${email_login}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:18.751" level="INFO">${email_login} = jameshuff@example.com</msg>
+<status status="PASS" starttime="20250214 15:24:18.750" endtime="20250214 15:24:18.751"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${senha_login}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:18.752" level="INFO">${senha_login} = Mg9MHhWDOX</msg>
+<status status="PASS" starttime="20250214 15:24:18.751" endtime="20250214 15:24:18.752"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${nome_login}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:18.752" level="INFO">${nome_login} = Daniel</msg>
+<status status="PASS" starttime="20250214 15:24:18.752" endtime="20250214 15:24:18.752"/>
+</kw>
+<kw name="criar usuário" library="usuariosApiKeywords">
+<arg>${nome_login}</arg>
+<arg>${email_login}</arg>
+<arg>${senha_login}</arg>
+<arg>true</arg>
+<kw name="Gerar payload para cadastro de cliente" library="usuariosApiKeywords">
+<arg>${nome}</arg>
+<arg>${email}</arg>
+<arg>${senha}</arg>
+<arg>${adm}</arg>
+<kw name="Criar Payload Para Cadastro De Cliente" library="createPayloads">
+<var>${body}</var>
+<arg>${NOME}</arg>
+<arg>${EMAIL}</arg>
+<arg>${SENHA}</arg>
+<arg>${ADM}</arg>
+<msg timestamp="20250214 15:24:18.755" level="INFO">${body} = {
+    "nome": "Daniel",
+    "email": "jameshuff@example.com",
+    "password": "Mg9MHhWDOX",
+    "administrador": "true"
+}</msg>
+<status status="PASS" starttime="20250214 15:24:18.754" endtime="20250214 15:24:18.755"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:18.755" level="INFO">${body} = {
+    "nome": "Daniel",
+    "email": "jameshuff@example.com",
+    "password": "Mg9MHhWDOX",
+    "administrador": "true"
+}</msg>
+<status status="PASS" starttime="20250214 15:24:18.755" endtime="20250214 15:24:18.755"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:18.753" endtime="20250214 15:24:18.756"/>
+</kw>
+<kw name="POST request test" library="commons_api">
+<arg>/usuarios</arg>
+<arg>${body}</arg>
+<arg>201</arg>
+<kw name="criar sessao" library="commons_api">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>api</arg>
+<arg>${BASE_URL_API}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20250214 15:24:18.758" level="INFO">Creating Session using : alias=api, url=https://serverest.dev, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20250214 15:24:18.757" endtime="20250214 15:24:18.758"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:18.756" endtime="20250214 15:24:18.758"/>
+</kw>
+<kw name="Convert To Json" library="JsonValidator">
+<var>${body}</var>
+<arg>${body}</arg>
+<doc>Convert a python object to JsonType.</doc>
+<msg timestamp="20250214 15:24:18.759" level="INFO">${body} = {'nome': 'Daniel', 'email': 'jameshuff@example.com', 'password': 'Mg9MHhWDOX', 'administrador': 'true'}</msg>
+<status status="PASS" starttime="20250214 15:24:18.758" endtime="20250214 15:24:18.759"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20250214 15:24:18.760" level="INFO">&amp;{headers} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20250214 15:24:18.759" endtime="20250214 15:24:18.760"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>api</arg>
+<arg>url=${url}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=${status}</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20250214 15:24:19.132" level="INFO">POST Request : url=https://serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '103'} 
+ body=b'{"nome": "Daniel", "email": "jameshuff@example.com", "password": "Mg9MHhWDOX", "administrador": "true"}' 
+ </msg>
+<msg timestamp="20250214 15:24:19.132" level="INFO">POST Response : url=https://serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': '00503808722fe42e827883a8e57334e6;o=1', 'Date': 'Fri, 14 Feb 2025 18:24:19 GMT', 'Server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "c7FE9IMlt1PltCi6"
+} 
+ </msg>
+<msg timestamp="20250214 15:24:19.132" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20250214 15:24:18.760" endtime="20250214 15:24:19.132"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${resposta}</var>
+<arg>${response.content}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250214 15:24:19.134" level="INFO">${resposta} = {
+    "message": "Cadastro realizado com sucesso",
+    "_id": "c7FE9IMlt1PltCi6"
+}</msg>
+<status status="PASS" starttime="20250214 15:24:19.132" endtime="20250214 15:24:19.134"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${resposta_status}</var>
+<arg>${response.status_code}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250214 15:24:19.135" level="INFO">${resposta_status} = 201</msg>
+<status status="PASS" starttime="20250214 15:24:19.134" endtime="20250214 15:24:19.135"/>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<var>${resposta}</var>
+<arg>${resposta}</arg>
+<doc>*DEPRECATED* Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</doc>
+<msg timestamp="20250214 15:24:19.135" level="WARN">Keyword 'RequestsLibrary.To Json' is deprecated. Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</msg>
+<msg timestamp="20250214 15:24:19.136" level="INFO">To JSON using : content={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "c7FE9IMlt1PltCi6"
+} </msg>
+<msg timestamp="20250214 15:24:19.136" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20250214 15:24:19.136" level="INFO">${resposta} = {'message': 'Cadastro realizado com sucesso', '_id': 'c7FE9IMlt1PltCi6'}</msg>
+<status status="PASS" starttime="20250214 15:24:19.135" endtime="20250214 15:24:19.136"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${resposta}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:19.137" level="INFO">${resposta} = {'message': 'Cadastro realizado com sucesso', '_id': 'c7FE9IMlt1PltCi6'}</msg>
+<status status="PASS" starttime="20250214 15:24:19.136" endtime="20250214 15:24:19.137"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${resposta_status}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20250214 15:24:19.138" level="INFO">${resposta_status} = 201</msg>
+<status status="PASS" starttime="20250214 15:24:19.137" endtime="20250214 15:24:19.138"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:18.756" endtime="20250214 15:24:19.139"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:18.753" endtime="20250214 15:24:19.139"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:18.230" endtime="20250214 15:24:19.140"/>
+</kw>
+<kw name="Abrir Sessao" library="commons_web">
+<kw name="Baixar Chromedriver Path" library="webdriverManager">
+<var>${CHROMEDRIVER_PATH}</var>
+<msg timestamp="20250214 15:24:19.142" level="INFO">====== WebDriver manager ======</msg>
+<msg timestamp="20250214 15:24:21.055" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg timestamp="20250214 15:24:21.131" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg timestamp="20250214 15:24:21.212" level="INFO">Driver [C:\Users\55619\.wdm\drivers\chromedriver\win64\133.0.6943.98\chromedriver.exe] found in cache</msg>
+<msg timestamp="20250214 15:24:21.212" level="INFO">C:\Users\55619\.wdm\drivers\chromedriver\win64\133.0.6943.98\chromedriver.exe</msg>
+<msg timestamp="20250214 15:24:21.212" level="INFO">${CHROMEDRIVER_PATH} = C:\Users\55619\.wdm\drivers\chromedriver\win64\133.0.6943.98\chromedriver.exe</msg>
+<status status="PASS" starttime="20250214 15:24:19.142" endtime="20250214 15:24:21.212"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>executable_path=${CHROMEDRIVER_PATH}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20250214 15:24:21.214" level="INFO">Opening browser 'Chrome' to base url 'https://front.serverest.dev/login'.</msg>
+<status status="PASS" starttime="20250214 15:24:21.213" endtime="20250214 15:24:24.728"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:19.140" endtime="20250214 15:24:24.729"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:18.230" endtime="20250214 15:24:24.729"/>
+</kw>
+<kw name="Dado que eu tenha realizado login" library="loginSteps">
+<arg>${email_login}</arg>
+<arg>${senha_login}</arg>
+<kw name="Dado que eu tenha acessado o sistema serverest" library="loginSteps">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${BOTAO_ENTRAR}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:24.736" endtime="20250214 15:24:24.765"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250214 15:24:25.443" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250214 15:24:24.766" endtime="20250214 15:24:25.443"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:24.733" endtime="20250214 15:24:25.443"/>
+</kw>
+<kw name="Quando preencher usuário &quot;${NOME_LOGIN}&quot; e Senha &quot;${SENHA_LOGIN}&quot;" library="loginSteps" sourcename="Quando preencher usuário &quot;${NOME_LOGIN}&quot; e Senha &quot;${SENHA_LOGIN}&quot;">
+<kw name="aguardar elemento estar visivel na tela e preencher" library="loginKeywords">
+<arg>${Input_Email_Login}</arg>
+<arg>${NOME_LOGIN}</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:25.446" endtime="20250214 15:24:25.459"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<arg>${elemento_a_ser_preenchido}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250214 15:24:25.460" level="INFO">Typing text 'jameshuff@example.com' into text field 'id=email'.</msg>
+<status status="PASS" starttime="20250214 15:24:25.459" endtime="20250214 15:24:25.608"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:25.445" endtime="20250214 15:24:25.608"/>
+</kw>
+<kw name="aguardar elemento estar visivel na tela e preencher" library="loginKeywords">
+<arg>${Input_Senha_Login}</arg>
+<arg>${SENHA_LOGIN}</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:25.610" endtime="20250214 15:24:25.621"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<arg>${elemento_a_ser_preenchido}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250214 15:24:25.622" level="INFO">Typing text 'Mg9MHhWDOX' into text field 'id=password'.</msg>
+<status status="PASS" starttime="20250214 15:24:25.621" endtime="20250214 15:24:25.817"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:25.609" endtime="20250214 15:24:25.817"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:25.444" endtime="20250214 15:24:25.818"/>
+</kw>
+<kw name="E clicar em &quot;Entrar&quot;" library="commons_web" sourcename="${word} clicar em &quot;${btn}&quot;">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Botao_${btn}}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250214 15:24:25.821" level="INFO">Clicking element '//button[@type="submit"]'.</msg>
+<status status="PASS" starttime="20250214 15:24:25.820" endtime="20250214 15:24:25.911"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:25.818" endtime="20250214 15:24:25.912"/>
+</kw>
+<kw name="Então sistema efetuará o &quot;login&quot; com sucesso ao mostrar o texto &quot;${Texto_bem_vindo}&quot;" library="loginSteps" sourcename="Então sistema efetuará o &quot;${login}&quot; com sucesso ao mostrar o texto &quot;${Texto}&quot;">
+<kw name="aguardar texto: &quot;${Texto}&quot; estar visivel e printar a tela" library="commons_web" sourcename="aguardar texto: &quot;${Texto}&quot; estar visivel e printar a tela">
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<arg>${Texto}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:25.915" endtime="20250214 15:24:27.038"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250214 15:24:27.167" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250214 15:24:27.038" endtime="20250214 15:24:27.168"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:25.914" endtime="20250214 15:24:27.168"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:25.913" endtime="20250214 15:24:27.169"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:24.730" endtime="20250214 15:24:27.169"/>
+</kw>
+<kw name="Quando clicar em &quot;Logout&quot;" library="commons_web" sourcename="${word} clicar em &quot;${btn}&quot;">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Botao_${btn}}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250214 15:24:27.172" level="INFO">Clicking element '//button[@data-testid="logout"]'.</msg>
+<status status="PASS" starttime="20250214 15:24:27.171" endtime="20250214 15:24:27.327"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:27.169" endtime="20250214 15:24:27.328"/>
+</kw>
+<kw name="Então sistema efetuará o &quot;logout&quot; com sucesso ao mostrar o texto &quot;${Texto_Logout}&quot;" library="loginSteps" sourcename="Então sistema efetuará o &quot;${login}&quot; com sucesso ao mostrar o texto &quot;${Texto}&quot;">
+<kw name="aguardar texto: &quot;${Texto}&quot; estar visivel e printar a tela" library="commons_web" sourcename="aguardar texto: &quot;${Texto}&quot; estar visivel e printar a tela">
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<arg>${Texto}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:27.331" endtime="20250214 15:24:27.350"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250214 15:24:27.607" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250214 15:24:27.350" endtime="20250214 15:24:27.607"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:27.329" endtime="20250214 15:24:27.607"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:27.328" endtime="20250214 15:24:27.607"/>
+</kw>
+<kw name="Fechar Sessao" library="commons_web" type="TEARDOWN">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20250214 15:24:27.608" endtime="20250214 15:24:29.907"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:27.608" endtime="20250214 15:24:29.907"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:18.225" endtime="20250214 15:24:29.907"/>
+</test>
+<test id="s1-s1-t3" name="Cenário 03: Login com senha errada" line="22">
+<kw name="Abrir Sessao" library="commons_web" type="SETUP">
+<kw name="Baixar Chromedriver Path" library="webdriverManager">
+<var>${CHROMEDRIVER_PATH}</var>
+<msg timestamp="20250214 15:24:29.909" level="INFO">====== WebDriver manager ======</msg>
+<msg timestamp="20250214 15:24:31.395" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg timestamp="20250214 15:24:31.479" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg timestamp="20250214 15:24:31.554" level="INFO">Driver [C:\Users\55619\.wdm\drivers\chromedriver\win64\133.0.6943.98\chromedriver.exe] found in cache</msg>
+<msg timestamp="20250214 15:24:31.555" level="INFO">C:\Users\55619\.wdm\drivers\chromedriver\win64\133.0.6943.98\chromedriver.exe</msg>
+<msg timestamp="20250214 15:24:31.555" level="INFO">${CHROMEDRIVER_PATH} = C:\Users\55619\.wdm\drivers\chromedriver\win64\133.0.6943.98\chromedriver.exe</msg>
+<status status="PASS" starttime="20250214 15:24:29.909" endtime="20250214 15:24:31.555"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>executable_path=${CHROMEDRIVER_PATH}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20250214 15:24:31.556" level="INFO">Opening browser 'Chrome' to base url 'https://front.serverest.dev/login'.</msg>
+<status status="PASS" starttime="20250214 15:24:31.555" endtime="20250214 15:24:34.715"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:29.908" endtime="20250214 15:24:34.715"/>
+</kw>
+<kw name="Dado que eu tenha acessado o sistema serverest" library="loginSteps">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${BOTAO_ENTRAR}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:34.717" endtime="20250214 15:24:34.735"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250214 15:24:35.272" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250214 15:24:34.736" endtime="20250214 15:24:35.272"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:34.716" endtime="20250214 15:24:35.272"/>
+</kw>
+<kw name="Quando preencher usuário &quot;${NOME}&quot; e Senha &quot;1234&quot;" library="loginSteps" sourcename="Quando preencher usuário &quot;${NOME_LOGIN}&quot; e Senha &quot;${SENHA_LOGIN}&quot;">
+<kw name="aguardar elemento estar visivel na tela e preencher" library="loginKeywords">
+<arg>${Input_Email_Login}</arg>
+<arg>${NOME_LOGIN}</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:35.274" endtime="20250214 15:24:35.286"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<arg>${elemento_a_ser_preenchido}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250214 15:24:35.287" level="INFO">Typing text 'felipe@gmail.com.br' into text field 'id=email'.</msg>
+<status status="PASS" starttime="20250214 15:24:35.286" endtime="20250214 15:24:35.425"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:35.273" endtime="20250214 15:24:35.425"/>
+</kw>
+<kw name="aguardar elemento estar visivel na tela e preencher" library="loginKeywords">
+<arg>${Input_Senha_Login}</arg>
+<arg>${SENHA_LOGIN}</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:35.426" endtime="20250214 15:24:35.441"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${elemento_aguardado}</arg>
+<arg>${elemento_a_ser_preenchido}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250214 15:24:35.442" level="INFO">Typing text '1234' into text field 'id=password'.</msg>
+<status status="PASS" starttime="20250214 15:24:35.441" endtime="20250214 15:24:35.615"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:35.426" endtime="20250214 15:24:35.615"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:35.273" endtime="20250214 15:24:35.616"/>
+</kw>
+<kw name="E clicar em &quot;Entrar&quot;" library="commons_web" sourcename="${word} clicar em &quot;${btn}&quot;">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Botao_${btn}}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250214 15:24:35.617" level="INFO">Clicking element '//button[@type="submit"]'.</msg>
+<status status="PASS" starttime="20250214 15:24:35.616" endtime="20250214 15:24:35.693"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:35.616" endtime="20250214 15:24:35.693"/>
+</kw>
+<kw name="Então sistema não efeturá login e apresentará o texto &quot;${Texto_Logout}&quot;" library="loginSteps" sourcename="Então sistema não efeturá login e apresentará o texto &quot;${Texto}&quot;">
+<kw name="aguardar texto: &quot;${Texto}&quot; estar visivel e printar a tela" library="commons_web" sourcename="aguardar texto: &quot;${Texto}&quot; estar visivel e printar a tela">
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<arg>${Texto}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" starttime="20250214 15:24:35.695" endtime="20250214 15:24:35.707"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250214 15:24:35.942" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-7.png"&gt;&lt;img src="selenium-screenshot-7.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250214 15:24:35.708" endtime="20250214 15:24:35.943"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:35.694" endtime="20250214 15:24:35.943"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:35.694" endtime="20250214 15:24:35.943"/>
+</kw>
+<kw name="Fechar Sessao" library="commons_web" type="TEARDOWN">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20250214 15:24:35.944" endtime="20250214 15:24:38.180"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:35.944" endtime="20250214 15:24:38.180"/>
+</kw>
+<status status="PASS" starttime="20250214 15:24:29.908" endtime="20250214 15:24:38.181"/>
+</test>
+<doc>Testes de login e logout</doc>
+<status status="PASS" starttime="20250214 15:24:05.667" endtime="20250214 15:24:38.182"/>
+</suite>
+<status status="PASS" starttime="20250214 15:24:05.637" endtime="20250214 15:24:38.184"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Suites">Suites</stat>
+<stat pass="3" fail="0" skip="0" id="s1-s1" name="loginTest">Suites.loginTest</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20250214 15:24:07.046" level="WARN">Imported resource file 'C:\Users\55619\Dropbox\My PC (DESKTOP-8Q92QEK)\Documents\projetos\servRest\automacao-com-robot-framework-api-web\API\resources\feature\login\loginApiVariables.resource' is empty.</msg>
+<msg timestamp="20250214 15:24:08.087" level="WARN">Keyword 'RequestsLibrary.To Json' is deprecated. Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</msg>
+<msg timestamp="20250214 15:24:19.135" level="WARN">Keyword 'RequestsLibrary.To Json' is deprecated. Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</msg>
+</errors>
+</robot>

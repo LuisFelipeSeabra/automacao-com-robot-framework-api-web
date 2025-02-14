@@ -1,0 +1,10 @@
+robotframework==5.0.1
+webdriver-manager==4.0.2
+webdrivermanager==0.10.0
+robotframework-pabot==2.18.0
+robotframework-faker==5.0.0
+robotframework-jsonlibrary==0.5
+robotframework-jsonvalidator==2.0.0
+robotframework-requests==0.9.3
+robotframework-seleniumlibrary==6.0.0
+robotframework-pabot==2.18.0
